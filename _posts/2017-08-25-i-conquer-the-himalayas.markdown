@@ -20,7 +20,7 @@ author: 左佳龙
 
 # 结构概览
 
-![Yosh Ginsu]({{site.baseurl}}/assets/img/object-overview.png)
+![Yosh Ginsu]({{site.baseurl}}/assets/img/objcet/object-overview.png)
 
 # 源码分析
 
@@ -94,7 +94,4 @@ public class Object{
 }
 ```
 
-> Snackwave chillwave seitan whatever, flannel wolf vinyl occupy activated charcoal succulents waistcoat. Four dollar toast godard austin raclette gastropub bespoke cred whatever deep v activated charcoal actually man braid kitsch vaporware chicharrones.
-
-![Yosh Ginsu]({{site.baseurl}}/assets/img/yosh-ginsu.jpg)
 
