@@ -11,13 +11,13 @@ author: 左佳龙
 # 概述
 
 >相信所有学习java的人都对Object这个类不陌生，它是类层级结构的根节点，所有类的父类（一切皆对象的具体体现？）
-
+>
 >it is believed that all the people who coding in java are not familiar with the Class about Object.it the root of hierarchy and every class has Object as a superClass(maybe it is a embodiment of 'everything is object' )
 
 # 介绍
 
 >Object类位于rt.jar(JAVA基础类库)中的java.lang包下。让我们看一下他的大体结构并逐个分析。
-
+>
 >Object is located library of rt.jar,and package in java.lang,let us overview it and then try to analysis it.
 
 # 结构概览
