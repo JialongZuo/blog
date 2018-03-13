@@ -20,7 +20,7 @@ author: 左佳龙
 
 # 结构概览
 
-![Yosh Ginsu]({{site.baseurl}}/assets/img/objcet/object-overview.png)
+![]({{site.baseurl}}/assets/img/object/object-overview.png)
 
 # 源码分析
 
