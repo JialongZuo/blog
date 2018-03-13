@@ -1,45 +1,49 @@
-
-title: Karna
-desctiption: Karna is a responsive jekyll theme which includes pinterest like pins.
-url: https://jialongzuo/github/io
+title: My personal blog - Adam Neilson
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
 permalink: ':title/'
+baseurl: "/adam-blog" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-markdown: kramdown
-baseurl: "/"
-full-version: "http://webjeda.com/karna-full/"
+# Author settings
+author: Adam Neilson # add your name
+author-pic: adam-face.jpg
+about-author: My name is Adam Neilson. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
 
-sass:
-    style: compressed
+# Contact links
+email: # Add your Email address
+phone: # Add your Phone number
+website: # Add your website, do not add http://
+linkedin: # Add your Linkedin handle
+github: artemsheludko # Add your Github handle
+twitter: '@artemsheludko_' # Add your Twitter handle
+facebook: # Add your Facebook handle
+instagram: # Add your Instagram handle
+pinterest: # Add your Pinterest handle
 
-  
-#optimization
-#compress.html
-compress_html:
-  clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
-  comments: ["<!-- ", " -->"]
-  endings: [all]
-  ignore:
-    envs: [local]
-  blanklines: false
-  profile: false
-  startings: []
+# Newsletter
+mailchimp: # Add your MailChimp form identifier.
 
-highlight: rouge
-
+# Disqus
+discus_identifier: mr-brown # Add your discus identifier
 
 # Tracker
-analytics: UA-83979019-1
+analytics: # Google Analytics
 
-# Comments
-disqus-shortname: webjeda-demo
+# Paginate
+paginate: 6
+paginate_path: /page:num/
 
-# Contact form
-# Go to https://getsimpleform.com and get a API token by signing up with your email and enter that here
-api-token:   
+# Build settings
+markdown: kramdown
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
 
 include: [_pages]
-version: 0.8
-
-plugins: 
-    - jekyll-paginate
-    - jekyll-seo-tag
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
