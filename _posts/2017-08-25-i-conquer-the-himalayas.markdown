@@ -35,7 +35,7 @@ public class Object{
     //for example,java can not operate the underlying OS but using JNI to invoke other language like c or c++ to do this.
     private static native void registerNatives();
 
-    //static所声明的静态代码块，再类被载入时执行。
+    //static所声明的静态代码块，当类被载入时执行。
     //static decorate static code block that will execute while being load first time.
     static {
         registerNatives();
