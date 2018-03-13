@@ -16,8 +16,7 @@ author: 左佳龙
 
 # 介绍
 
->Object类位于rt.jar(JAVA基础类库)中的java.lang包下。让我们看一下他的大体结构并逐个分析。
-
+>Object类位于rt.jar(JAVA基础类库)中的java.lang包下。让我们看一下他的大体结构并逐个分析。<br/>
 >Object is located library of rt.jar,and package in java.lang,let us overview it and then try to analysis it.
 
 # 结构概览
