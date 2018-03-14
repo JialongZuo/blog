@@ -5,7 +5,7 @@
     <link>https://jialongzuo.github.io/categories/tranquilpeak/</link>
     <description>Recent content in Tranquilpeak on Hugo tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
     <lastBuildDate>Mon, 15 Jun 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jialongzuo.github.io/categories/tranquilpeak/index.xml" rel="self" type="application/rss+xml" />
@@ -18,16 +18,6 @@
       
       <guid>https://jialongzuo.github.io/2015/06/welcome-to-tranquilpeak-0.4.3-beta/</guid>
       <description>&lt;p&gt;Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Elements showcase</title>
-      <link>https://jialongzuo.github.io/2015/05/elements-showcase/</link>
-      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2015/05/elements-showcase/</guid>
-      <description>&lt;p&gt;Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&amp;rsquo;s simple and elegant.
 &lt;/p&gt;</description>
     </item>
     
