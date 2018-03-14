@@ -30,15 +30,18 @@
     
 
     
-    <meta name="description" content="">
-    <meta property="og:description" content="">
+    <meta name="description" content="Class类的源码学习和
+">
+    <meta property="og:description" content="Class类的源码学习和
+">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Class源码学习">
     <meta property="og:url" content="/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
     <meta property="og:site_name" content="Hugo tranquilpeak theme">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Hugo tranquilpeak theme">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="Class类的源码学习和
+">
     
     
 
@@ -254,41 +257,15 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>
-Class的实例对象表示<upper>运行中</upper>程序的类和接口。
-Instances of the class {@code Class} represent classes and interfaces in a running Java application
-<img src="https://jialongzuo.github.io/img/showcase.png" alt="Tranquilpeak" />
-Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
-<h1 id="table-of-contents">Table of Contents</h1><nav id="TableOfContents">
-<ul>
-<li><a href="#介绍">介绍</a>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#介绍-1">介绍</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#源码分析">源码分析</a></li>
-</ul></li>
-</ul>
-</nav></p>
+              <p>Class类的源码学习和
+</p>
 
-<h1 id="介绍">介绍</h1>
-
-<!--[![Join the chat at https://gitter.im/LouisBarranqueiro/hexo-theme-tranquilpeak](https://badges.gitter.im/Join%20Chat.svg)](http s://gitter.im/LouisBarranqueiro/hexo-theme-tranquilpeak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)-->
-
-<p>A gorgeous responsive theme for Hugo blog framework</p>
-
-<p><a href="https://tranquilpeak.kakawait.com"><img src="https://jialongzuo.github.io/img/showcase.png" alt="Tranquilpeak" /></a></p>
-
-<h4 id="介绍-1">介绍</h4>
+<h4 id="介绍">介绍</h4>
 
 <p>当一个Class文件加载到JVM方法区中时，会对应生成一个对应的Class对象，它是由JVM主动创建的类，其中保存了类的完整构造信息。我理解为这就是一个
 类的模板，我们可以通过这个类模板来创建一个类（在内存中开辟空间）。也就是基于这个类，java实现了反射机制。</p>
 
-<h2 id="源码分析">源码分析</h2>
+<h4 id="源码分析">源码分析</h4>
 
 <pre><code class="language-java">
 //这个类被声明成一个final类。
@@ -322,7 +299,7 @@ public final class Class&lt;T&gt; implements java.io.Serializable, //序列化�
             + getName();
     }
 
-    //返回带有
+    //返回带有类型的String
     public String toGenericString() {
         //是否是基础类型（Boolean，Character，Byte，Short,Integer,Long,Float,Double,Void）
         if (isPrimitive()) { 
@@ -515,7 +492,7 @@ public final class Class&lt;T&gt; implements java.io.Serializable, //序列化�
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -601,7 +578,7 @@ public final class Class&lt;T&gt; implements java.io.Serializable, //序列化�
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -697,7 +674,8 @@ public final class Class&lt;T&gt; implements java.io.Serializable, //序列化�
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"></div>
+              <div class="media-content hide-xs font-merryweather"><p>Class类的源码学习和
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -714,7 +692,7 @@ public final class Class&lt;T&gt; implements java.io.Serializable, //序列化�
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。<br />
+              <div class="media-content hide-xs font-merryweather"><p>一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 </p></div>
             </div>
             <div style="clear:both;"></div>

@@ -17,7 +17,7 @@
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</guid>
-      <description>&lt;p&gt;在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。&lt;br /&gt;
+      <description>&lt;p&gt;一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 &lt;/p&gt;</description>
     </item>
     

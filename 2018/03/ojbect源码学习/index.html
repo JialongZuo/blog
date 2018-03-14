@@ -30,9 +30,9 @@
     
 
     
-    <meta name="description" content="在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。
+    <meta name="description" content="一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 ">
-    <meta property="og:description" content="在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。
+    <meta property="og:description" content="一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 ">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Ojbect源码学习">
@@ -40,7 +40,7 @@
     <meta property="og:site_name" content="Hugo tranquilpeak theme">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Hugo tranquilpeak theme">
-    <meta name="twitter:description" content="在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。
+    <meta name="twitter:description" content="一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 ">
     
     
@@ -247,92 +247,336 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。<br />
+              <p>一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 </p>
 
-<h1 id="概述-summary">概述(SUMMARY)</h1>
+<h1 id="1-简介-summary">1.简介(Summary)</h1>
 
 <blockquote>
-<p>相信所有学习java的人都对Object这个类不陌生，它是类层级结构的根节点，所有类的父类（一切皆对象的具体体现？）<br/>
-it is believed that all the people who coding in java are not familiar with the Class about Object.it the root of hierarchy and every class has Object as a superClass(maybe it is a embodiment of &lsquo;everything is object&rsquo; )</p>
+<p>Object在rt.jar中的java.lang包下，让我们先概览一下它的相关api。<br/>
+Object is located library of rt.jar and package in java.lang,let us overview it at first.</p>
 </blockquote>
 
-<h1 id="介绍-brief-introduction">介绍(BRIEF INTRODUCTION)</h1>
+<h2 id="2-object类总览-overview">2.Object类总览（OverView）</h2>
 
-<blockquote>
-<p>Object类位于rt.jar(JAVA基础类库)中的java.lang包下。让我们看一下他的大体结构并逐个分析。<br/>
-Object is located library of rt.jar,and package in java.lang,let us overview it and then try to analysis it.</p>
-</blockquote>
+<ul>
+<li><h4 id="构造函数-constructor-summary">构造函数（Constructor Summary）</h4>
 
-<h1 id="源码分析-source-analysis">源码分析(SOURCE ANALYSIS)</h1>
+<table>
+<thead>
+<tr>
+<th align="left">构造方法（Constructor）</th>
+</tr>
+</thead>
 
-<pre><code class="language-java">public class Object{
+<tbody>
+<tr>
+<td align="left">Object()</td>
+</tr>
+</tbody>
+</table></li>
 
-    //此方法用于注册一些原生方法
-    //native是一个声明方法为本地方法的关键字，用于调用非java接口（如c/c++实现）。
-    //例如java本身不能操作系统底层，但可以通过JNI调用其他语言来实现此功能。
-    //this function is used for register some native function.
-    //native is a key word for function which can not invoke the function that code without java.
-    //for example,java can not operate the underlying OS but using JNI to invoke other language like c or c++ to do this.
+<li><h4 id="方法-method">方法（Method）</h4>
+
+<table>
+<thead>
+<tr>
+<th align="left">修饰符和类型</br>Modifier and Type</th>
+<th align="left">方法和描述</br>Method and Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">protected Object</td>
+<td align="left">clone()</br> 复制对象（浅拷贝）</td>
+</tr>
+
+<tr>
+<td align="left">boolean</td>
+<td align="left">equals(Object obj)</br>判断两个对象是否相等，使用==判断（判断地址空间是否相同）</td>
+</tr>
+
+<tr>
+<td align="left">protected void</td>
+<td align="left">finalize()</br>当CG确定没有这个对象没有在任何地方被引用后被调用</td>
+</tr>
+
+<tr>
+<td align="left">Class&lt;?&gt;</td>
+<td align="left">getClass()</br>返回对象所对应的运行时的Class对象</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">notify()</br>唤醒一个等待这个对象释放锁的线程</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">notifyAll()</br>唤醒所有等待这个对象释放锁的线程</td>
+</tr>
+
+<tr>
+<td align="left">String</td>
+<td align="left">toString()</br>返回对象的字符描述</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">wait()</br>将线程挂起直到调用notify或notifyAll唤醒线程</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">wait(long timeout)</br>将线程挂起直到调用notify或notifyAll唤醒线程或者超过指定时间</td>
+</tr>
+
+<tr>
+<td align="left">private static native void</td>
+<td align="left">registerNatives()</br>注册一些原生方法</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+
+<h2 id="3-主要代码分析-source-analysis">3.主要代码分析（Source Analysis)</h2>
+
+<table>
+<thead>
+<tr>
+<th>registerNatives()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *此方法用于注册一些原生方法
+     *native是一个声明方法为本地方法的关键字，用于调用非java接口（如c/c++实现）。
+     *例如java本身不能操作系统底层，但可以通过JNI调用其他语言来实现此功能。
+     *this function is used for register some native function.
+     *native is a key word for function which can not invoke the function that code without java.
+     *for example,java can not operate the underlying OS but using JNI to invoke other language like c or c++ to do this.
+     */
     private static native void registerNatives();
 
-    //static所声明的静态代码块，当类被载入时执行。
-    //static decorate static code block that will execute while being load first time.
+    /**
+     *static所声明的静态代码块，当类被载入时执行。
+     *static decorate static code block that will execute while being load first time.
+     */
     static {
         registerNatives();
     }
+</code></pre>
 
-    //获取Object所对应的Class对象。
-    //final关键字声明此方法不允许被覆写。
-    //obtain the Class about the Object
-    //the key word of final means this function can not be override
+<table>
+<thead>
+<tr>
+<th>getClass()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *获取Object所对应的Class对象。
+     *final关键字声明此方法不允许被覆写。
+     *obtain the Class about the Object
+     *the key word of final means this function can not be override
+     */
     public final native Class&lt;?&gt; getClass();
+</code></pre>
 
-    //得到对象的hash值（固定长度的散列值）,需要注意，同一个对象产生的hash值肯定是相同的而不同的对象产生的hash值不一定是不同的。
-    //所以不能通过hash值计算对象是否相同，但hash值不同那对象一定不相同。
-    //hash值的使用场景是优化查找，先通过hash值进行分类，确定分类然后再精确查找。比如HashMap,HashTree等Hash集合中便于快速确定value位置。
-    //JVM每次实例化一个Object时就会将其放入一个Hash表中来快速获取和比较对象。
-    //get hashCode. it is important to known that two different Object may be have same hash code.
-    //so we can not judge that two object is same by they have same hash code.but we can judge they are different by this.
-    //hashCode is used for fast lookup, we can classify by their hash code and then confirm the real position.like HashMap,HashTree.
-    //everytime JVM instance a object,it will be push a hash table for fast compare and lookup .
+<table>
+<thead>
+<tr>
+<th>hashCode()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *得到对象的hash值（固定长度的散列值）,需要注意，同一个对象产生的hash值肯定是相同的而不同的对象产生的hash值不一定是不同的。
+     *所以不能通过hash值计算对象是否相同，但hash值不同那对象一定不相同。
+     *hash值的使用场景是优化查找，先通过hash值进行分类，确定分类然后再精确查找。比如HashMap,HashTree等Hash集合中便于快速确定value位置。
+     *JVM每次实例化一个Object时就会将其放入一个Hash表中来快速获取和比较对象。
+     *get hashCode. it is important to known that two different Object may be have same hash code.
+     *so we can not judge that two object is same by they have same hash code.but we can judge they are different by this.
+     *hashCode is used for fast lookup, we can classify by their hash code and then confirm the real position.like HashMap,HashTree.
+     *everytime JVM instance a object,it will be push a hash table for fast compare and lookup .
+     */
     public native int hashCode();
+</code></pre>
 
-    //对象比较方法，默认使用==操作符比较
-    //==操作符比较对象的地址空间是否相同
-    //this function is used for judge is two object are same.
-    //operator of == is used for compare are two object have same address space.
+<table>
+<thead>
+<tr>
+<th>equals(Object obj)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *对象比较方法，默认使用==操作符比较
+     *==操作符比较对象的地址空间是否相同
+     *this function is used for judge is two object are same.
+     *operator of == is used for compare are two object have same address space.
+     */
     public boolean equals(Object obj) {
         return (this == obj);
     }
+</code></pre>
 
-    //对象拷贝，开辟一块新的地址空间并将原对象数据拷贝（需要注意这里是浅拷贝）
-    //instance a new object and copy data(shallow copy)
+<table>
+<thead>
+<tr>
+<th>clone()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *对象拷贝，开辟一块新的地址空间并将原对象数据拷贝（需要注意这里是浅拷贝）
+     *instance a new object and copy data(shallow copy)
+     */
     protected native Object clone() throws CloneNotSupportedException;
+</code></pre>
 
-    //返回对象的Class名称+@+hash值（16进制）
-    //return the name of Class +@+hashCode(hexadecimal)
+<table>
+<thead>
+<tr>
+<th>toString()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *返回对象的Class名称+@+hash值（16进制）
+     *return the name of Class +@+hashCode(hexadecimal)
+     */
     public String toString() {
         return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());
     }
+</code></pre>
 
-    //唤醒一个被该对象调用wait方法挂起的线程
-    //notify a single thread which waiting on this object's monitor
+<table>
+<thead>
+<tr>
+<th>notify()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *唤醒一个被该对象调用wait方法挂起的线程
+     *notify a single thread which waiting on this object's monitor
+     */
     public final native void notify();
+</code></pre>
 
-    //唤醒所有被该对象调用wait方法挂起的线程
-    //notify all of thread which waiting on this object's monitor
+<table>
+<thead>
+<tr>
+<th>notifyAll()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+    *唤醒所有被该对象调用wait方法挂起的线程
+    *notify all of thread which waiting on this object's monitor
+    */
     public final native void notifyAll();
+</code></pre>
 
-    //暂停当前线程并释放对象锁
-    //Causes the current thread to wait until another thread invokes the notify or notifyAll
-    //notify a single thread which waiting on this object's monitor
+<table>
+<thead>
+<tr>
+<th>wait(long timeout)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *暂停当前线程并释放对象锁其他线程调用对象notify或notifyAll唤醒线程或超过指定时间
+     *Causes the current thread to wait until either another thread invokes the notify() method or the notifyAll() method for this object,
+     * or a specified amount of time has elapsed.
+     */
     public final native void wait(long timeout) throws InterruptedException;
+</code></pre>
 
-    //释放一些无法通过CG回收的内存，比如通过native方法开辟的内存。
-    //finalize some memory which can't retrieve by CG,like memory which open up by native function.
+<table>
+<thead>
+<tr>
+<th>finalize()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">    /**
+     *可用于释放一些无法通过CG回收的内存，比如通过native方法开辟的内存。
+     *finalize some memory which can't retrieve by CG,like memory which open up by native function.
+     */
     protected void finalize() throws Throwable { }
-}
 </code></pre>
               
             </div>
@@ -597,7 +841,8 @@ Object is located library of rt.jar,and package in java.lang,let us overview it 
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"></div>
+              <div class="media-content hide-xs font-merryweather"><p>Class类的源码学习和
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -614,7 +859,7 @@ Object is located library of rt.jar,and package in java.lang,let us overview it 
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>在JAVA中，Object对象是类层次结构的根级，所有的类的父类。这篇文章将介绍Object的方法属性。<br />
+              <div class="media-content hide-xs font-merryweather"><p>一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 </p></div>
             </div>
             <div style="clear:both;"></div>
