@@ -22,26 +22,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Hidden pagination showcase</title>
+    <title>Class源码学习</title>
     <meta name="author" content="Firstname Lastname">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="java, source analysis, Class">
 
     <link rel="icon" href="https://jialongzuo.github.io/favicon.png">
     
 
     
-    <meta name="description" content="This post is used to show how a site looks if the pagination is hidden.
-">
-    <meta property="og:description" content="This post is used to show how a site looks if the pagination is hidden.
-">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Hidden pagination showcase">
-    <meta property="og:url" content="/2014/08/hidden-pagination-showcase/">
+    <meta property="og:title" content="Class源码学习">
+    <meta property="og:url" content="/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
     <meta property="og:site_name" content="Hugo tranquilpeak theme">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Hugo tranquilpeak theme">
-    <meta name="twitter:description" content="This post is used to show how a site looks if the pagination is hidden.
-">
+    <meta name="twitter:description" content="">
     
     
 
@@ -53,8 +50,10 @@
     
 
     
-      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg">
+      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city-750.jpg">
     
+    
+      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg">
     
     
 
@@ -207,26 +206,24 @@
 </nav>
 
       
-
-      <div id="main" data-behavior="4"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      Hidden pagination showcase
+      Class源码学习
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2014-08-15T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-03-14T00:00:00Z">
         
-  August 15, 2014
+  March 14, 2018
 
       </time>
     
@@ -235,22 +232,208 @@
   
     <span>in</span>
     
-      <a class="category-link" href="https://jialongzuo.github.io/categories/tranquilpeak">tranquilpeak</a>, 
+      <a class="category-link" href="https://jialongzuo.github.io/categories/java">java</a>, 
     
-      <a class="category-link" href="https://jialongzuo.github.io/categories/features">features</a>
+      <a class="category-link" href="https://jialongzuo.github.io/categories/source-analysis">source analysis</a>
     
   
 
   </div>
 
 </div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>This post is used to show how a site looks if the pagination is hidden.
-</p>
+              <p>
+Class的实例对象表示<upper>运行中</upper>程序的类和接口。
+Instances of the class {@code Class} represent classes and interfaces in a running Java application
+<img src="https://jialongzuo.github.io/img/showcase.png" alt="Tranquilpeak" />
+Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
+<h1 id="table-of-contents">Table of Contents</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#介绍">介绍</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#介绍-1">介绍</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#源码分析">源码分析</a></li>
+</ul></li>
+</ul>
+</nav></p>
 
-<p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+<h1 id="介绍">介绍</h1>
+
+<!--[![Join the chat at https://gitter.im/LouisBarranqueiro/hexo-theme-tranquilpeak](https://badges.gitter.im/Join%20Chat.svg)](http s://gitter.im/LouisBarranqueiro/hexo-theme-tranquilpeak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)-->
+
+<p>A gorgeous responsive theme for Hugo blog framework</p>
+
+<p><a href="https://tranquilpeak.kakawait.com"><img src="https://jialongzuo.github.io/img/showcase.png" alt="Tranquilpeak" /></a></p>
+
+<h4 id="介绍-1">介绍</h4>
+
+<p>当一个Class文件加载到JVM方法区中时，会对应生成一个对应的Class对象，它是由JVM主动创建的类，其中保存了类的完整构造信息。我理解为这就是一个
+类的模板，我们可以通过这个类模板来创建一个类（在内存中开辟空间）。也就是基于这个类，java实现了反射机制。</p>
+
+<h2 id="源码分析">源码分析</h2>
+
+<pre><code class="language-java">
+//这个类被声明成一个final类。
+public final class Class&lt;T&gt; implements java.io.Serializable, //序列化接口
+                              GenericDeclaration, //用于获取泛型声明内容（TypeVaribale[]类型）的接口。
+                              Type,//java中的所有类型的父接口，包括Class，泛型（参数化类型），泛型中的类型变量（TypeVariable）等等。
+                              AnnotatedElement {//用于获取注释@的接口。
+    private static final int ANNOTATION= 0x00002000;
+    private static final int ENUM      = 0x00004000;
+    private static final int SYNTHETIC = 0x00001000;
+
+    private static native void registerNatives();
+    static {//静态代码块，用于注册本地方法。
+        registerNatives();
+    }
+
+    /*私有构造方法，只有JVM才能创建Class对象。这个构造方法不能被使用并且组织默认构造方法生成
+     * Private constructor. Only the Java Virtual Machine creates Class objects.
+     * This constructor is not used and prevents the default constructor being
+     * generated.
+     */
+
+    //初始化类加载器属性。
+    private Class(ClassLoader loader) {
+        classLoader = loader;
+    }
+
+    //重写toString方法。
+    public String toString() {
+        return (isInterface() ? &quot;interface &quot; : (isPrimitive() ? &quot;&quot; : &quot;class &quot;))
+            + getName();
+    }
+
+    //返回带有
+    public String toGenericString() {
+        //是否是基础类型（Boolean，Character，Byte，Short,Integer,Long,Float,Double,Void）
+        if (isPrimitive()) { 
+            return toString();
+        } else {
+            StringBuilder sb = new StringBuilder();
+
+            // Class modifiers are a superset of interface modifiers
+            //拼接修饰符
+            int modifiers = getModifiers() &amp; Modifier.classModifiers();
+            if (modifiers != 0) {
+                sb.append(Modifier.toString(modifiers));
+                sb.append(' ');
+            }
+			
+            if (isAnnotation()) {
+                sb.append('@');
+            }
+            if (isInterface()) { // Note: all annotation types are interfaces
+                sb.append(&quot;interface&quot;);
+            } else {
+                if (isEnum())
+                    sb.append(&quot;enum&quot;);
+                else
+                    sb.append(&quot;class&quot;);
+            }
+            sb.append(' ');
+            sb.append(getName());
+            //实现GenericDeclaration接口的方法，用于获取泛型类型。
+            TypeVariable&lt;?&gt;[] typeparms = getTypeParameters();
+            if (typeparms.length &gt; 0) {
+                boolean first = true;
+                sb.append('&lt;');
+                for(TypeVariable&lt;?&gt; typeparm: typeparms) {
+                    if (!first)
+                        sb.append(',');
+                    sb.append(typeparm.getTypeName());
+                    first = false;
+                }
+                sb.append('&gt;');
+            }
+
+            return sb.toString();
+        }
+    }
+    
+    //获取Class的修饰符（public，static，final）等，返回int可以通过Modifier.toString(modifiers)获取其对应的具体修饰符
+    public native int getModifiers();
+
+    //获取类标记
+    public native Object[] getSigners();
+
+
+    @CallerSensitive //提高安全注解防止用双重反射提高权限。
+    //当一个内部类是在外部类的一个方法中声明时，调用内部类的此函数获得这个方法。
+    public Method getEnclosingMethod() throws SecurityException {
+        EnclosingMethodInfo enclosingInfo = getEnclosingMethodInfo();
+
+        if (enclosingInfo == null)
+            return null;
+        else {
+            if (!enclosingInfo.isMethod())
+                return null;
+
+            MethodRepository typeInfo = MethodRepository.make(enclosingInfo.getDescriptor(),
+                                                              getFactory());
+            Class&lt;?&gt;   returnType       = toClass(typeInfo.getReturnType());
+            Type []    parameterTypes   = typeInfo.getParameterTypes();
+            Class&lt;?&gt;[] parameterClasses = new Class&lt;?&gt;[parameterTypes.length];
+
+            // Convert Types to Classes; returned types *should*
+            // be class objects since the methodDescriptor's used
+            // don't have generics information
+            for(int i = 0; i &lt; parameterClasses.length; i++)
+                parameterClasses[i] = toClass(parameterTypes[i]);
+
+            // Perform access check
+            Class&lt;?&gt; enclosingCandidate = enclosingInfo.getEnclosingClass();
+            enclosingCandidate.checkMemberAccess(Member.DECLARED,
+                                                 Reflection.getCallerClass(), true);
+            /*
+             * Loop over all declared methods; match method name,
+             * number of and type of parameters, *and* return
+             * type.  Matching return type is also necessary
+             * because of covariant returns, etc.
+             */
+            for(Method m: enclosingCandidate.getDeclaredMethods()) {
+                if (m.getName().equals(enclosingInfo.getName()) ) {
+                    Class&lt;?&gt;[] candidateParamClasses = m.getParameterTypes();
+                    if (candidateParamClasses.length == parameterClasses.length) {
+                        boolean matches = true;
+                        for(int i = 0; i &lt; candidateParamClasses.length; i++) {
+                            if (!candidateParamClasses[i].equals(parameterClasses[i])) {
+                                matches = false;
+                                break;
+                            }
+                        }
+
+                        if (matches) { // finally, check return type
+                            if (m.getReturnType().equals(returnType) )
+                                return m;
+                        }
+                    }
+                }
+            }
+
+            throw new InternalError(&quot;Enclosing method not found&quot;);
+        }
+    }
+}
+</code></pre>
               
             </div>
           </div>
@@ -262,7 +445,11 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/pagination/">pagination</a>
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/source-analysis/">source analysis</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/class/">Class</a>
 
                   </div>
                 
@@ -270,12 +457,12 @@
             
             
   <div class="post-actions-wrap">
-      <nav style="visibility: hidden">
+      <nav >
         <ul class="post-actions post-action-nav">
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2014/08/hidden-tag-section-showcase/" data-tooltip="Hidden tag section showcase">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -283,7 +470,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2014/08/video-integrations-showcase/" data-tooltip="Video integrations showcase">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" data-tooltip="Ojbect源码学习">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -301,19 +488,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -328,7 +515,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -356,12 +543,12 @@
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
         
   <div class="post-actions-wrap">
-      <nav style="visibility: hidden">
+      <nav >
         <ul class="post-actions post-action-nav">
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2014/08/hidden-tag-section-showcase/" data-tooltip="Hidden tag section showcase">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -369,7 +556,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2014/08/video-integrations-showcase/" data-tooltip="Video integrations showcase">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" data-tooltip="Ojbect源码学习">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -387,19 +574,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -414,7 +601,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -429,19 +616,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjialongzuo.github.io%2F2014%2F08%2Fhidden-pagination-showcase%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fjialongzuo.github.io%2F2014%2F08%2Fhidden-pagination-showcase%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fjialongzuo.github.io%2F2014%2F08%2Fhidden-pagination-showcase%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%2F">
           <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
         </a>
       </li>
@@ -725,9 +912,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/jialongzuo.github.io\/2014\/08\/hidden-pagination-showcase\/';
+          this.page.url = 'https:\/\/jialongzuo.github.io\/2018\/03\/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0\/';
           
-            this.page.identifier = '\/2014\/08\/hidden-pagination-showcase\/'
+            this.page.identifier = '\/2018\/03\/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0\/'
           
         };
         (function() {

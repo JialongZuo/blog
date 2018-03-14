@@ -3,13 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/2015/06/welcome-to-tranquilpeak-0.4.3-beta/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -79,6 +79,12 @@
   </url>
   
   <url>
+    <loc>https://jialongzuo.github.io/tags/class/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jialongzuo.github.io/tags/cover-image/</loc>
     <lastmod>2015-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -87,12 +93,6 @@
   <url>
     <loc>https://jialongzuo.github.io/tags/dailymotion/</loc>
     <lastmod>2014-08-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jialongzuo.github.io/tags/disqus/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -109,24 +109,6 @@
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/tags/google-analytics/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jialongzuo.github.io/tags/gravatar/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jialongzuo.github.io/tags/hexo-theme/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jialongzuo.github.io/tags/highlight-code/</loc>
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -134,7 +116,7 @@
   
   <url>
     <loc>https://jialongzuo.github.io/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,14 +133,14 @@
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/tags/java/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/categories/java/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/categories/java/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/tags/java/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -176,19 +158,7 @@
   
   <url>
     <loc>https://jialongzuo.github.io/post/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jialongzuo.github.io/categories/releases/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jialongzuo.github.io/tags/responsive/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -199,14 +169,14 @@
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/tags/source-analysis/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/categories/source-analysis/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jialongzuo.github.io/categories/source-analysis/</loc>
-    <lastmod>2018-03-13T00:00:00+00:00</lastmod>
+    <loc>https://jialongzuo.github.io/tags/source-analysis/</loc>
+    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -236,7 +206,7 @@
   
   <url>
     <loc>https://jialongzuo.github.io/categories/tranquilpeak/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2015-05-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
