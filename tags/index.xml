@@ -6,19 +6,10 @@
     <description>Recent content in Tags on Hugo tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Oct 2013 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jialongzuo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Chinese</title>
-      <link>https://jialongzuo.github.io/tags/chinese/</link>
-      <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/tags/chinese/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Class</title>
@@ -30,20 +21,56 @@
     </item>
     
     <item>
-      <title>Cover Image</title>
-      <link>https://jialongzuo.github.io/tags/cover-image/</link>
-      <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/tags/cover-image/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Dailymotion</title>
       <link>https://jialongzuo.github.io/tags/dailymotion/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
       <guid>https://jialongzuo.github.io/tags/dailymotion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event</title>
+      <link>https://jialongzuo.github.io/tags/event/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/event/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event Object</title>
+      <link>https://jialongzuo.github.io/tags/event-object/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/event-object/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event Object Lisetener</title>
+      <link>https://jialongzuo.github.io/tags/event-object-lisetener/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/event-object-lisetener/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Features</title>
+      <link>https://jialongzuo.github.io/tags/features/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Functional</title>
+      <link>https://jialongzuo.github.io/tags/functional/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/functional/</guid>
       <description></description>
     </item>
     
@@ -75,20 +102,47 @@
     </item>
     
     <item>
-      <title>Japanese</title>
-      <link>https://jialongzuo.github.io/tags/japanese/</link>
-      <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
+      <title>Java</title>
+      <link>https://jialongzuo.github.io/tags/java/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/tags/japanese/</guid>
+      <guid>https://jialongzuo.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Java</title>
-      <link>https://jialongzuo.github.io/tags/java/</link>
-      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
+      <title>Map</title>
+      <link>https://jialongzuo.github.io/tags/map/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/tags/java/</guid>
+      <guid>https://jialongzuo.github.io/tags/map/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mybatis</title>
+      <link>https://jialongzuo.github.io/tags/mybatis/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/mybatis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observable</title>
+      <link>https://jialongzuo.github.io/tags/observable/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/observable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observer</title>
+      <link>https://jialongzuo.github.io/tags/observer/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/observer/</guid>
       <description></description>
     </item>
     
@@ -102,38 +156,47 @@
     </item>
     
     <item>
-      <title>Pagination</title>
-      <link>https://jialongzuo.github.io/tags/pagination/</link>
-      <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/tags/pagination/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Social</title>
-      <link>https://jialongzuo.github.io/tags/social/</link>
-      <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/tags/social/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Source Analysis</title>
       <link>https://jialongzuo.github.io/tags/source-analysis/</link>
-      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jialongzuo.github.io/tags/source-analysis/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Tag Plugins</title>
-      <link>https://jialongzuo.github.io/tags/tag-plugins/</link>
-      <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
+      <title>Source Analysis22</title>
+      <link>https://jialongzuo.github.io/tags/source-analysis22/</link>
+      <pubDate>Thu, 16 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/tags/tag-plugins/</guid>
+      <guid>https://jialongzuo.github.io/tags/source-analysis22/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>String</title>
+      <link>https://jialongzuo.github.io/tags/string/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/string/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stringbuffer</title>
+      <link>https://jialongzuo.github.io/tags/stringbuffer/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/stringbuffer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stringbuilder</title>
+      <link>https://jialongzuo.github.io/tags/stringbuilder/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/tags/stringbuilder/</guid>
       <description></description>
     </item>
     

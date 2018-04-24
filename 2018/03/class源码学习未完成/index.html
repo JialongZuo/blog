@@ -1,0 +1,968 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Class源码学习（未完成）</title>
+    <meta name="author" content="Jerome Zuo">
+    <meta name="keywords" content="java, source analysis, Class">
+
+    <link rel="icon" href="https://jialongzuo.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+">
+    <meta property="og:description" content="Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Class源码学习（未完成）">
+    <meta property="og:url" content="/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+    <meta property="og:site_name" content="Hugo tranquilpeak theme">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hugo tranquilpeak theme">
+    <meta name="twitter:description" content="Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=640">
+    
+
+    
+      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city-750.jpg">
+    
+    
+      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg">
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://jialongzuo.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://jialongzuo.github.io/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://jialongzuo.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://jialongzuo.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Jerome Zuo</h4>
+        
+          <h5 class="sidebar-profile-bio">Everything ought to be beautiful in a human being:face,dress,soul and idea.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('//d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Class源码学习（未完成）
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-03-14T00:00:00Z">
+        
+  三月 14, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://jialongzuo.github.io/categories/java">java</a>, 
+    
+      <a class="category-link" href="https://jialongzuo.github.io/categories/source-analysis">source analysis</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+</p>
+
+<h1 id="1-简介-summary">1.简介(Summary)</h1>
+
+<blockquote>
+<p>当一个Class文件加载到JVM方法区中时，会对应生成一个对应的Class对象，它是由JVM主动创建的类，其中保存了类的完整构造信息。我理解为这就是一个
+类的模板，我们可以通过这个类模板来创建一个类（在内存中开辟空间）。也就是基于这个类，java实现了反射机制。</p>
+</blockquote>
+
+<h2 id="2-class类总览-overview">2.Class类总览（OverView）</h2>
+
+<ul>
+<li><h4 id="class类说明">Class类说明</h4>
+
+<pre><code class="language-java">/**
+*可以看到Class被设计成一个final类。
+*Serializable是序列化接口。
+*GenericDeclaration是一个用于获取泛型声明内容（TypeVaribale[]类型）的接口。
+*Type是java中的所有类型的父接口，包括Class，泛型（参数化类型），泛型中的类型变量（TypeVariable）等等。
+*AnnotatedElement是用于获取注解@interface的接口。
+*/
+public final class Class&lt;T&gt; implements java.io.Serializable,
+                          GenericDeclaration,
+                          Type,
+                          AnnotatedElement {
+}
+</code></pre></li>
+
+<li><h4 id="构造函数-constructor-summary">构造函数（Constructor Summary）</h4>
+
+<table>
+<thead>
+<tr>
+<th>private Class(ClassLoader loader)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-java">/*
+ *私有构造方法，只有JVM才能创建Class对象。这个构造方法不能被使用并且组织默认构造方法生成
+ *Private constructor. Only the Java Virtual Machine creates Class objects.
+ *This constructor is not used and prevents the default constructor being
+ *generated.
+ */
+private Class(ClassLoader loader) {
+   //初始化类加载器属性
+    classLoader = loader;
+}
+</code></pre></li>
+
+<li><h4 id="方法-method">方法（Method）</h4>
+
+<table>
+<thead>
+<tr>
+<th align="left">修饰符和类型</br>Modifier and Type</th>
+<th align="left">方法和描述</br>Method and Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><U> Class&lt;? extends U&gt;</td>
+<td align="left">asSubclass()</br> 将Class转换成父类CLass</td>
+</tr>
+
+<tr>
+<td align="left">String</td>
+<td align="left">toString()</br>返回字符说明</td>
+</tr>
+
+<tr>
+<td align="left">String</td>
+<td align="left">toGenericString()</br>相比toString()多出修饰符和泛型信息</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="left">getModifiers()</br>返回对象所对应的运行时的Class对象</td>
+</tr>
+
+<tr>
+<td align="left">Method</td>
+<td align="left">getEnclosingMethod()</br>当一个内部类是在外部类的一个方法中声明时，调用此函数获得这个方法</td>
+</tr>
+
+<tr>
+<td align="left">Constructor&lt;?&gt;</td>
+<td align="left">getEnclosingConstructor()</br>当一个内部类是在外部类的一个构造器中声明时，调用此函数获得这个构造器</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">getEnclosingClass ()</br>唤醒所有等待这个对象释放锁的线程</td>
+</tr>
+
+<tr>
+<td align="left">String</td>
+<td align="left">toString()</br>返回对象的字符描述</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">wait()</br>将线程挂起直到调用notify或notifyAll唤醒线程</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">wait(long timeout)</br>将线程挂起直到调用notify或notifyAll唤醒线程或者超过指定时间</td>
+</tr>
+
+<tr>
+<td align="left">private static native void</td>
+<td align="left">registerNatives()</br>注册一些原生方法</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+
+<h1 id="3-主要功能代码分析-source-analysis">3.主要功能代码分析（Source Analysis）</h1>
+
+<p>|getModifiers()|
+|-|
+|</p>
+
+<pre><code class="language-java">    //获取Class的修饰符（public，static，final）等，返回int可以通过Modifier.toString(modifiers)获取其对应的具体修饰符
+    //Modifier中定义了修饰符的常量，并提供了常用操作比如isPublic()。
+    public native int getModifiers();
+</code></pre>
+
+<p>|getEnclosingMethod()|
+|-|
+|</p>
+
+<pre><code class="language-java">    @CallerSensitive //提高安全注解防止用双重反射提高权限。
+    //当一个内部类是在外部类的一个方法中声明时，调用内部类的此函数获得这个方法。
+    public Method getEnclosingMethod() throws SecurityException {
+	//获取EnclosingMethodInfo类（私有内部静态类），里面包括enclosingClass，name，descriptor属性保存
+	//类或者就接口一共有五中|Top level|Nested|Inner|Local|Anonymous|
+	//当类为Top Level,Nested,Inner 类时
+        EnclosingMethodInfo enclosingInfo = getEnclosingMethodInfo();
+
+        if (enclosingInfo == null)
+            return null;
+        else {
+            if (!enclosingInfo.isMethod())
+                return null;
+
+            MethodRepository typeInfo = MethodRepository.make(enclosingInfo.getDescriptor(),
+                                                              getFactory());
+            Class&lt;?&gt;   returnType       = toClass(typeInfo.getReturnType());
+            Type []    parameterTypes   = typeInfo.getParameterTypes();
+            Class&lt;?&gt;[] parameterClasses = new Class&lt;?&gt;[parameterTypes.length];
+
+            // Convert Types to Classes; returned types *should*
+            // be class objects since the methodDescriptor's used
+            // don't have generics information
+            for(int i = 0; i &lt; parameterClasses.length; i++)
+                parameterClasses[i] = toClass(parameterTypes[i]);
+
+            // Perform access check
+            Class&lt;?&gt; enclosingCandidate = enclosingInfo.getEnclosingClass();
+            enclosingCandidate.checkMemberAccess(Member.DECLARED,
+                                                 Reflection.getCallerClass(), true);
+            /*
+             * Loop over all declared methods; match method name,
+             * number of and type of parameters, *and* return
+             * type.  Matching return type is also necessary
+             * because of covariant returns, etc.
+             */
+            for(Method m: enclosingCandidate.getDeclaredMethods()) {
+                if (m.getName().equals(enclosingInfo.getName()) ) {
+                    Class&lt;?&gt;[] candidateParamClasses = m.getParameterTypes();
+                    if (candidateParamClasses.length == parameterClasses.length) {
+                        boolean matches = true;
+                        for(int i = 0; i &lt; candidateParamClasses.length; i++) {
+                            if (!candidateParamClasses[i].equals(parameterClasses[i])) {
+                                matches = false;
+                                break;
+                            }
+                        }
+
+                        if (matches) { // finally, check return type
+                            if (m.getReturnType().equals(returnType) )
+                                return m;
+                        }
+                    }
+                }
+            }
+
+            throw new InternalError(&quot;Enclosing method not found&quot;);
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/source-analysis/">source analysis</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/class/">Class</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/chinese-test/" data-tooltip="Java新特性-函数式编程">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/" data-tooltip="JDK源码学习-Ojbect类">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Jerome Zuo. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/chinese-test/" data-tooltip="Java新特性-函数式编程">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/" data-tooltip="JDK源码学习-Ojbect类">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%25E6%259C%25AA%25E5%25AE%258C%25E6%2588%2590%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%25E6%259C%25AA%25E5%25AE%258C%25E6%2588%2590%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fclass%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0%25E6%259C%25AA%25E5%25AE%258C%25E6%2588%2590%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Jerome Zuo</h4>
+    
+      <div id="about-card-bio">Everything ought to be beautiful in a human being:face,dress,soul and idea.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Code Monkey
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/">
+                <h3 class="media-heading">Mybatis源码学习-Mapper注册</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Mybatis作为当今最主流的持久层框架。他的内部到底是怎么管理Mapper并关联xml中定义的sql呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/">
+                <h3 class="media-heading">通过web容器中spring容器的初始化学习java事件模型</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>事件机制我理解为是一种对事件的消息模型。那么再java中它是如何实现的呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/">
+                <h3 class="media-heading">观察者模式Observer和Observable</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>现实生活中我们经常会出现等待通知的时候，比如办理业务和吃饭时牌号，追剧提醒等。那么java中是如何实现这种场景的呢？</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+                <h3 class="media-heading">JDK源码学习-HashMap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/japanese-test/">
+                <h3 class="media-heading">JDK源码学习-StringBuilder类</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>String作为一个字符串处理的类相信大家并不陌生，但同时Java提供了StringBuffer和StringBuilder类来处理字符串，它们之间到底有什么关系和区别呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/chinese-test/">
+                <h3 class="media-heading">Java新特性-函数式编程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>在过去的编程中，我们常用命令式编程。在Jdk8为我们提供了一种全新的编程思维-函数式编程，那么这种编程方式究竟有什么不同呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+                <h3 class="media-heading">Class源码学习（未完成）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/">
+                <h3 class="media-heading">JDK源码学习-Ojbect类</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2017/03/japanese-test/">
+                <h3 class="media-heading">乳白恶霸体验</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2015/03/highlighted-code-showcase/">
+                <h3 class="media-heading">highlighted code showcase</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Tranquilpeak Hugo theme have its own theme to highlight source code. It&rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://jialongzuo.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://jialongzuo.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/jialongzuo.github.io\/2018\/03\/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90\/';
+          
+            this.page.identifier = '\/2018\/03\/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

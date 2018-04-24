@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Observable on Hugo tranquilpeak theme</title>
+    <link>https://jialongzuo.github.io/tags/observable/</link>
+    <description>Recent content in Observable on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 21 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jialongzuo.github.io/tags/observable/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>观察者模式Observer和Observable</title>
+      <link>https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/</guid>
+      <description>&lt;p&gt;现实生活中我们经常会出现等待通知的时候，比如办理业务和吃饭时牌号，追剧提醒等。那么java中是如何实现这种场景的呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

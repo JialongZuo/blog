@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Event Object Lisetener on Hugo tranquilpeak theme</title>
+    <link>https://jialongzuo.github.io/tags/event-object-lisetener/</link>
+    <description>Recent content in Event Object Lisetener on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 26 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jialongzuo.github.io/tags/event-object-lisetener/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>通过web容器中spring容器的初始化学习java事件模型</title>
+      <link>https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;p&gt;事件机制我理解为是一种对事件的消息模型。那么再java中它是如何实现的呢？
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

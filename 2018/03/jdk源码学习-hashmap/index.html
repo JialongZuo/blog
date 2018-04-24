@@ -1,0 +1,1196 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.37.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>JDK源码学习-HashMap</title>
+    <meta name="author" content="Jerome Zuo">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="https://jialongzuo.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+">
+    <meta property="og:description" content="Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="JDK源码学习-HashMap">
+    <meta property="og:url" content="/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+    <meta property="og:site_name" content="Hugo tranquilpeak theme">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hugo tranquilpeak theme">
+    <meta name="twitter:description" content="Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=640">
+    
+
+    
+      <meta property="og:image" content="//d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-6-140.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://jialongzuo.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://jialongzuo.github.io/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://jialongzuo.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://jialongzuo.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Jerome Zuo</h4>
+        
+          <h5 class="sidebar-profile-bio">Everything ought to be beautiful in a human being:face,dress,soul and idea.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialongzuo.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      JDK源码学习-HashMap
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-03-19T00:00:00Z">
+        
+  三月 19, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://jialongzuo.github.io/categories/java">java</a>, 
+    
+      <a class="category-link" href="https://jialongzuo.github.io/categories/source-analysis">source analysis</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#1-map接口介绍">1.Map接口介绍</a></li>
+<li><a href="#2-abstractmap介绍">2.AbstractMap介绍</a></li>
+<li><a href="#3-hashmap分析">3.HashMap分析</a>
+<ul>
+<li><a href="#node-hashmap中的entry">Node-HashMap中的Entry</a></li>
+<li><a href="#hashmap中的主要属性介绍">HashMap中的主要属性介绍</a></li>
+<li><a href="#hashmap中的put方法">HashMap中的put方法</a></li>
+<li><a href="#mashmap中的resize">MashMap中的resize()</a></li>
+<li><a href="#hashmap中的get方法">HashMap中的get方法</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="1-map接口介绍">1.Map接口介绍</h1>
+
+<blockquote>
+<p>Map是java中的一种集合类，用于存储key-value应声，我们通过学习Map接口类了解集合类的具体用途。
+通过Map接口我们大概可以看出Map提供了键值对的操作。通过Entry这个类型来映射key-value数据类型。</p>
+</blockquote>
+
+<pre><code class="language-java">public interface Map&lt;K,V&gt; {
+    //定义Map集合的操作方法，put，get，size，remove，putAll等
+    V put(K key, V value);
+    V get(Object key);
+    boolean containsKey(Object key);
+    boolean containsValue(Object value);
+ 
+    //Entry接口，Map中的一个内部接口，用于具体存储一对key-value键值对。
+    interface Entry&lt;K,V&gt; {
+        K getKey();
+        V getValue();
+        V setValue(V value);	
+        boolean equals(Object o);
+        int hashCode();
+    }
+ 
+    //获取Entry的Set集合
+    Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet();
+}
+</code></pre>
+
+<h1 id="2-abstractmap介绍">2.AbstractMap介绍</h1>
+
+<blockquote>
+<p>AbstractMap为Map实现提供了一个基础骨架，它能使你花尽可能小的力气去实现一个Map，
+HashMap就是其的一个子类。</p>
+</blockquote>
+
+<pre><code class="language-java">public abstract class AbstractMap&lt;K,V&gt; implements Map&lt;K,V&gt; {
+ 
+    //在AbstractMap中没有实现put方法，留给子类实现，可以看到他抛出了一个UnsupportedOperationException异常
+    public V put(K key, V value) {
+        throw new UnsupportedOperationException();
+    }
+ 
+    /**
+     *通过key值获取value，可以看到get方法先获取Map中的Entry的集合Set，然后通过遍历Set来获取符合要求的值
+     *其余方法containsKey，containsValue，remove等方法也是通过类似原理实现
+     */
+    public V get(Object key) {
+        Iterator&lt;Entry&lt;K,V&gt;&gt; i = entrySet().iterator();
+        if (key==null) {
+            while (i.hasNext()) {remove
+                Entry&lt;K,V&gt; e = i.next();
+                if (e.getKey()==null)
+                    return e.getValue();
+            }
+        } else {
+            while (i.hasNext()) {
+                Entry&lt;K,V&gt; e = i.next();
+                if (key.equals(e.getKey()))
+                    return e.getValue();
+            }
+        }
+        return null;
+    }
+ 
+    //他的hashCode的值为Map中所有Entry的hash值的总和
+    public int hashCode() {
+        int h = 0;
+        Iterator&lt;Entry&lt;K,V&gt;&gt; i = entrySet().iterator();
+        while (i.hasNext())
+            h += i.next().hashCode();
+        return h;
+    }
+ 
+    //同样没有实现entrySet()，留给子类实现
+    public abstract Set&lt;Entry&lt;K,V&gt;&gt; entrySet();
+ 
+  //AbstractMap中的的Entry接口实现
+  public static class SimpleEntry&lt;K,V&gt;
+        implements Entry&lt;K,V&gt;, java.io.Serializable
+    {
+        private static final long serialVersionUID = -8499721149061103585L;
+ 
+        private final K key;
+        private V value;
+ 
+        public K getKey() {
+            return key;
+        }
+ 
+        public V getValue() {
+            return value;
+        }
+       
+        //key和value的hash值按位异或
+        public int hashCode() {
+            return (key   == null ? 0 :   key.hashCode()) ^
+                   (value == null ? 0 : value.hashCode());
+        }
+    }
+}
+</code></pre>
+
+<h1 id="3-hashmap分析">3.HashMap分析</h1>
+
+<blockquote>
+<p>接下来让我们详细分析一下HashMap，下面介绍它的重要构成。</p>
+</blockquote>
+
+<ul>
+<li><h2 id="node-hashmap中的entry">Node-HashMap中的Entry</h2>
+
+<blockquote>
+<p>Node 为HashMap中的Entry的具体实现，扩展了原有Entry的key-value形式，将其变为了
+一种单向链表。</p>
+</blockquote></li>
+</ul>
+
+<pre><code class="language-java">    /**
+     *和AbstractMap中的SimpleEntry相比多出来hash和next两个属性，
+     *next类似单向链表一样将HashMap中的Node串联起来。
+     */
+    static class Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; {
+        final int hash;
+        final K key;
+        V value;
+        Node&lt;K,V&gt; next;
+ 
+        Node(int hash, K key, V value, Node&lt;K,V&gt; next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+ 
+        public final K getKey()        { return key; }
+        public final V getValue()      { return value; }
+        public final String toString() { return key + &quot;=&quot; + value; }
+ 
+        public final int hashCode() {
+            return Objects.hashCode(key) ^ Objects.hashCode(value);
+        }
+ 
+        public final V setValue(V newValue) {
+            V oldValue = value;
+            value = newValue;
+            return oldValue;
+        }
+ 
+        public final boolean equals(Object o) {
+            if (o == this)
+                return true;
+            if (o instanceof Map.Entry) {
+                Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;
+                if (Objects.equals(key, e.getKey()) &amp;&amp;
+                    Objects.equals(value, e.getValue()))
+                    return true;
+            }
+            return false;
+        }
+    }
+ 
+</code></pre>
+
+<ul>
+<li><h2 id="hashmap中的主要属性介绍">HashMap中的主要属性介绍</h2></li>
+</ul>
+
+<pre><code class="language-java">    /**
+     * 当第一次使用时初始化和在需要时重新调整大小，数组大小总是2的词幂
+     * 类似一个&lt;upper&gt;分类箱&lt;/upper&gt;先通过key通过hash方法得到一个hash然后再通过(table.length-1)&amp; hash进行分类放入对应的数组空间中.
+     * 可以发现table存储类型相同（通过如上方法计算值相同）的Node，然后table每一个位置存储一个Node（单向链表,类型相同的所有Node链起来的链表）.
+     * 它被声明称一个tarnsient字段，因为其实现了writeObject来进行自定义序列化，在其中处理这这个字段。其他字段同理。
+     * The table, initialized on first use, and resized as
+     * necessary. When allocated, length is always a power of two.
+     * (We also tolerate length zero in some operations to allow
+     * bootstrapping mechanics that are currently not needed.)
+     */
+    transient Node&lt;K,V&gt;[] table;
+ 
+    /**
+     * 缓存entrySet方法的返回值
+     * Holds cached entrySet(). Note that AbstractMap fields are used
+     * for keySet() and values().
+     */
+    transient Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;
+ 
+    /**
+     * Map中键值对的总数
+     * The number of key-value mappings contained in this map.
+     */
+    transient int size;
+ 
+    /**
+     * Map修改次数计数器
+     * The number of times this HashMap has been structurally modified
+     * Structural modifications are those that change the number of mappings in
+     * the HashMap or otherwise modify its internal structure (e.g.,
+     * rehash).  This field is used to make iterators on Collection-views of
+     * the HashMap fail-fast.  (See ConcurrentModificationException).
+     */
+    transient int modCount;
+ 
+    /**
+     *当size大于capacity*factor时，会执行resize操作
+     * The next size value at which to resize (capacity * load factor).
+     *
+     * @serial
+     */
+    // (The javadoc description is true upon serialization.
+    // Additionally, if the table array has not been allocated, this
+    // field holds the initial array capacity, or zero signifying
+    // DEFAULT_INITIAL_CAPACITY.)
+    int threshold;
+ 
+    /**
+     * 装载因子,用于衡量HashMap满的程度，默认默认为0.75f
+     * The load factor for the hash table.
+     *
+     * @serial
+     */
+    final float loadFactor;
+ 
+</code></pre>
+
+<ul>
+<li><h2 id="hashmap中的put方法">HashMap中的put方法</h2>
+
+<blockquote>
+<p>让我们通过put方法来分析HashMap中的数据存在形式</p>
+</blockquote></li>
+</ul>
+
+<pre><code class="language-java">    //存储key-value到Map中
+    public V put(K key, V value) {
+        return putVal(hash(key), key, value, false, true);
+    }
+ 
+    //计算key的hash值，方法为key的hashCode与其无符号右移16位的异或值
+    static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+    }
+    
+    /*
+     * 核心方法通过这个方法可以看出HashMap的具体实现原理和思路，让我们来具体分析一下。大体思路就是先通过key和算出hash然后根据
+     * 一系列的算式得到Node在table中的具体位置，如果位置当前已经有了Node则将Node遍历判断是否已经存在，如果不存在则放入链表尾部。
+     */
+    final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;
+        if ((tab = table) == null || (n = tab.length) == 0)
+            //resize方法，初始化table或者当容量等于门槛值(threshold)的时候扩容。下面会详细讲解这个方法。
+            n = (tab = resize()).length;
+        //如果所需放入table数组的当前位置没有值，则直接插入此位置。（所需位置用过hash值来确定，
+        //可以说hash值确定了Node的类型将Node进行分类。由此可以看出HashMap是一种无序的Map。
+        if ((p = tab[i = (n - 1) &amp; hash]) == null)
+            tab[i] = newNode(hash, key, value, null);
+        else {
+            Node&lt;K,V&gt; e; K k;
+        //如果key值相同，则e为新的value（e为需要插入的新value，在随后通过onlyIfAbsent判断策略来决定是否插入）
+            if (p.hash == hash &amp;&amp;
+                ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))
+                e = p;
+            else if (p instanceof TreeNode) 
+                e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);
+            else { //如果当前位置已经有值，遍历node链表如果没有key相同的则将其添加到链表尾部。
+                for (int binCount = 0; ; ++binCount) {
+                    if ((e = p.next) == null) {
+                        p.next = newNode(hash, key, value, null);
+                        if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                            treeifyBin(tab, hash);
+                        break;
+                    }
+                    if (e.hash == hash &amp;&amp;
+                        ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))
+                        break;
+                    p = e;
+                }
+            }
+            if (e != null) { // existing mapping for key
+                V oldValue = e.value;
+                if (!onlyIfAbsent || oldValue == null)
+                    e.value = value;
+                afterNodeAccess(e);
+                return oldValue;
+            }
+        }
+        ++modCount;
+        if (++size &gt; threshold)
+            resize();
+        afterNodeInsertion(evict);
+        return null;
+    }
+</code></pre>
+
+<ul>
+<li><h2 id="mashmap中的resize">MashMap中的resize()</h2>
+
+<blockquote>
+<p>resize方法表现了HashMap具体的初始化和扩容策略</p>
+</blockquote></li>
+</ul>
+
+<pre><code class="language-java">    //这个方法就是初始化table[]和当容量（size）超过临界值（threshold）时调整大小。Map初始化和map中size
+    //到达容量临界值（threshold）时调用此方法重新分配合适大小的table
+    final Node&lt;K,V&gt;[] resize() {
+        Node&lt;K,V&gt;[] oldTab = table;
+        int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        int oldThr = threshold;
+        int newCap, newThr = 0;
+        if (oldCap &gt; 0) {//旧Node数组有值，即调用此方法来扩容数组则新的扩容临界值设置为原来的2倍。
+            if (oldCap &gt;= MAXIMUM_CAPACITY) {
+                threshold = Integer.MAX_VALUE;
+                return oldTab;
+            }
+            else if ((newCap = oldCap &lt;&lt; 1) &lt; MAXIMUM_CAPACITY &amp;&amp;
+                     oldCap &gt;= DEFAULT_INITIAL_CAPACITY)
+                newThr = oldThr &lt;&lt; 1; // double threshold
+        }
+        else if (oldThr &gt; 0) // initial capacity was placed in threshold。初始化容量，如果有临界值则将容量设置为临界值。
+            newCap = oldThr;
+        else {               // zero initial threshold signifies using defaults
+            //初始化容量，如果扩容临界值为0，算出新的容量为默认值16,新的扩容临界值为16×0.76（默认）
+            newCap = DEFAULT_INITIAL_CAPACITY;
+            newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+        }
+        if (newThr == 0) {
+            float ft = (float)newCap * loadFactor;
+            newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (float)MAXIMUM_CAPACITY ?
+                      (int)ft : Integer.MAX_VALUE);
+        }
+        threshold = newThr;
+        @SuppressWarnings({&quot;rawtypes&quot;,&quot;unchecked&quot;})
+            Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])new Node[newCap];//创建一个容量为（newCap)的Node数组赋值给table
+        table = newTab;
+        if (oldTab != null) { //如果老Node数组有值（即调用此方法为table扩容而不是初始化）则拷贝原数组数据到新的数组中。
+            for (int j = 0; j &lt; oldCap; ++j) {
+                Node&lt;K,V&gt; e;
+                if ((e = oldTab[j]) != null) {
+                    oldTab[j] = null;
+                    if (e.next == null)
+                        newTab[e.hash &amp; (newCap - 1)] = e;
+                    else if (e instanceof TreeNode)
+                        ((TreeNode&lt;K,V&gt;)e).split(this, newTab, j, oldCap);
+                    else { // preserve order
+                        Node&lt;K,V&gt; loHead = null, loTail = null;
+                        Node&lt;K,V&gt; hiHead = null, hiTail = null;
+                        Node&lt;K,V&gt; next;
+                        do {
+                            next = e.next;
+                            if ((e.hash &amp; oldCap) == 0) {
+                                if (loTail == null)
+                                    loHead = e;
+                                else
+                                    loTail.next = e;
+                                loTail = e;
+                            }
+                            else {
+                                if (hiTail == null)
+                                    hiHead = e;
+                                else
+                                    hiTail.next = e;
+                                hiTail = e;
+                            }
+                        } while ((e = next) != null);
+                        if (loTail != null) {
+                            loTail.next = null;
+                            newTab[j] = loHead;
+                        }
+                        if (hiTail != null) {
+                            hiTail.next = null;
+                            newTab[j + oldCap] = hiHead;
+                        }
+                    }
+                }
+            }
+        }
+        return newTab;
+    }
+</code></pre>
+
+<ul>
+<li><h2 id="hashmap中的get方法">HashMap中的get方法</h2>
+
+<blockquote>
+<p>回想HashMap的put方法，那么get方法就很好理解了。</p>
+</blockquote></li>
+</ul>
+
+<pre><code class="language-java">    public V get(Object key) {
+        Node&lt;K,V&gt; e;
+        return (e = getNode(hash(key), key)) == null ? null : e.value;
+    }
+
+    /**
+     * Implements Map.get and related methods
+     * 通过get方法可以看出同put方法思路一样，先通过key算出所在分类箱table的位置然后遍历链表返回key所对应的值。
+     * @param hash hash for key
+     * @param key the key
+     * @return the node, or null if none
+     */
+    final Node&lt;K,V&gt; getNode(int hash, Object key) {
+        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; first, e; int n; K k;
+        if ((tab = table) != null &amp;&amp; (n = tab.length) &gt; 0 &amp;&amp;
+            (first = tab[(n - 1) &amp; hash]) != null) {
+            if (first.hash == hash &amp;&amp; // always check first node
+                ((k = first.key) == key || (key != null &amp;&amp; key.equals(k))))
+                return first;
+            if ((e = first.next) != null) {
+                if (first instanceof TreeNode)
+                    return ((TreeNode&lt;K,V&gt;)first).getTreeNode(hash, key);
+                do {
+                    if (e.hash == hash &amp;&amp;
+                        ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))
+                        return e;
+                } while ((e = e.next) != null);
+            }
+        }
+        return null;
+    }
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/source-analysis/">source analysis</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialongzuo.github.io/tags/map/">Map</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/" data-tooltip="观察者模式Observer和Observable">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/japanese-test/" data-tooltip="JDK源码学习-StringBuilder类">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Jerome Zuo. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/" data-tooltip="观察者模式Observer和Observable">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialongzuo.github.io/2018/03/japanese-test/" data-tooltip="JDK源码学习-StringBuilder类">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fjdk%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0-hashmap%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fjdk%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0-hashmap%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fjialongzuo.github.io%2F2018%2F03%2Fjdk%25E6%25BA%2590%25E7%25A0%2581%25E5%25AD%25A6%25E4%25B9%25A0-hashmap%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Jerome Zuo</h4>
+    
+      <div id="about-card-bio">Everything ought to be beautiful in a human being:face,dress,soul and idea.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Code Monkey
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/">
+                <h3 class="media-heading">Mybatis源码学习-Mapper注册</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Mybatis作为当今最主流的持久层框架。他的内部到底是怎么管理Mapper并关联xml中定义的sql呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/">
+                <h3 class="media-heading">通过web容器中spring容器的初始化学习java事件模型</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>事件机制我理解为是一种对事件的消息模型。那么再java中它是如何实现的呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/">
+                <h3 class="media-heading">观察者模式Observer和Observable</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>现实生活中我们经常会出现等待通知的时候，比如办理业务和吃饭时牌号，追剧提醒等。那么java中是如何实现这种场景的呢？</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/">
+                <h3 class="media-heading">JDK源码学习-HashMap</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/japanese-test/">
+                <h3 class="media-heading">JDK源码学习-StringBuilder类</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>String作为一个字符串处理的类相信大家并不陌生，但同时Java提供了StringBuffer和StringBuilder类来处理字符串，它们之间到底有什么关系和区别呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/chinese-test/">
+                <h3 class="media-heading">Java新特性-函数式编程</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>在过去的编程中，我们常用命令式编程。在Jdk8为我们提供了一种全新的编程思维-函数式编程，那么这种编程方式究竟有什么不同呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/">
+                <h3 class="media-heading">Class源码学习（未完成）</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/">
+                <h3 class="media-heading">JDK源码学习-Ojbect类</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2017/03/japanese-test/">
+                <h3 class="media-heading">乳白恶霸体验</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialongzuo.github.io/2015/03/highlighted-code-showcase/">
+                <h3 class="media-heading">highlighted code showcase</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Tranquilpeak Hugo theme have its own theme to highlight source code. It&rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://jialongzuo.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://jialongzuo.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/jialongzuo.github.io\/2018\/03\/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap\/';
+          
+            this.page.identifier = '\/2018\/03\/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

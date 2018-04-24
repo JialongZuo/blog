@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mybatis on Hugo tranquilpeak theme</title>
+    <link>https://jialongzuo.github.io/tags/mybatis/</link>
+    <description>Recent content in Mybatis on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 17 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jialongzuo.github.io/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mybatis源码学习-Mapper注册</title>
+      <link>https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/</guid>
+      <description>&lt;p&gt;Mybatis作为当今最主流的持久层框架。他的内部到底是怎么管理Mapper并关联xml中定义的sql呢？
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

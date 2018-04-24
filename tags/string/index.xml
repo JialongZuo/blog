@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>String on Hugo tranquilpeak theme</title>
+    <link>https://jialongzuo.github.io/tags/string/</link>
+    <description>Recent content in String on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 16 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jialongzuo.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JDK源码学习-StringBuilder类</title>
+      <link>https://jialongzuo.github.io/2018/03/japanese-test/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/japanese-test/</guid>
+      <description>&lt;p&gt;String作为一个字符串处理的类相信大家并不陌生，但同时Java提供了StringBuffer和StringBuilder类来处理字符串，它们之间到底有什么关系和区别呢？
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

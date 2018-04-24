@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Class源码学习</title>
-      <link>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</link>
+      <title>Class源码学习（未完成）</title>
+      <link>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/</link>
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</guid>
-      <description>&lt;p&gt;Class类的源码学习和
+      <guid>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/</guid>
+      <description>&lt;p&gt;Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
 &lt;/p&gt;</description>
     </item>
     

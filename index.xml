@@ -6,38 +6,99 @@
     <description>Recent content on Hugo tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 14 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jialongzuo.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Class源码学习</title>
-      <link>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
+      <title>Mybatis源码学习-Mapper注册</title>
+      <link>https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</guid>
-      <description>&lt;p&gt;Class类的源码学习和
+      <guid>https://jialongzuo.github.io/2018/04/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-mapper%E6%B3%A8%E5%86%8C/</guid>
+      <description>&lt;p&gt;Mybatis作为当今最主流的持久层框架。他的内部到底是怎么管理Mapper并关联xml中定义的sql呢？
 &lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Ojbect源码学习</title>
-      <link>https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</link>
+      <title>通过web容器中spring容器的初始化学习java事件模型</title>
+      <link>https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/%E9%80%9A%E8%BF%87web%E5%AE%B9%E5%99%A8%E4%B8%ADspring%E5%AE%B9%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0java%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;p&gt;事件机制我理解为是一种对事件的消息模型。那么再java中它是如何实现的呢？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>观察者模式Observer和Observable</title>
+      <link>https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver%E5%92%8Cobservable/</guid>
+      <description>&lt;p&gt;现实生活中我们经常会出现等待通知的时候，比如办理业务和吃饭时牌号，追剧提醒等。那么java中是如何实现这种场景的呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JDK源码学习-HashMap</title>
+      <link>https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-hashmap/</guid>
+      <description>&lt;p&gt;Map作为JAVA中一种集合类，用于存储一对key-value的映射，而HashMap又是最常用的Map之一，它为什么要以Hash来命令这种Map呢？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JDK源码学习-StringBuilder类</title>
+      <link>https://jialongzuo.github.io/2018/03/japanese-test/</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/japanese-test/</guid>
+      <description>&lt;p&gt;String作为一个字符串处理的类相信大家并不陌生，但同时Java提供了StringBuffer和StringBuilder类来处理字符串，它们之间到底有什么关系和区别呢？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java新特性-函数式编程</title>
+      <link>https://jialongzuo.github.io/2018/03/chinese-test/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/chinese-test/</guid>
+      <description>&lt;p&gt;在过去的编程中，我们常用命令式编程。在Jdk8为我们提供了一种全新的编程思维-函数式编程，那么这种编程方式究竟有什么不同呢？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Class源码学习（未完成）</title>
+      <link>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/</link>
+      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jialongzuo.github.io/2018/03/class%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%9C%AA%E5%AE%8C%E6%88%90/</guid>
+      <description>&lt;p&gt;Java程序员一定对.class文件不陌生，那么他和Class类之间有什么关系呢？到底Class类在Java中处于什么样的地位，他又有什么作用呢？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JDK源码学习-Ojbect类</title>
+      <link>https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/</link>
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/2018/03/ojbect%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://jialongzuo.github.io/2018/03/jdk%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-ojbect%E7%B1%BB/</guid>
       <description>&lt;p&gt;一切皆对象对每一个Java程序员来说并不陌生，而Object类是类层次结构中的根级，所有的类的父类。由此可见Object类的重要性，那么Object究竟有那些特殊的地方呢？
 &lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Cover image showcase</title>
-      <link>https://jialongzuo.github.io/2015/05/cover-image-showcase/</link>
-      <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
+      <title>乳白恶霸体验</title>
+      <link>https://jialongzuo.github.io/2017/03/japanese-test/</link>
+      <pubDate>Thu, 16 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jialongzuo.github.io/2015/05/cover-image-showcase/</guid>
-      <description>&lt;p&gt;Tranquilpeak integrate a unique &amp;ldquo;cover image&amp;rdquo; feature. Open this post to see how this feature sublimate your article.&lt;/p&gt;</description>
+      <guid>https://jialongzuo.github.io/2017/03/japanese-test/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -47,26 +108,6 @@
       
       <guid>https://jialongzuo.github.io/2015/03/highlighted-code-showcase/</guid>
       <description>&lt;p&gt;Tranquilpeak Hugo theme have its own theme to highlight source code. It&amp;rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Tags plugins showcase</title>
-      <link>https://jialongzuo.github.io/2014/10/tags-plugins-showcase/</link>
-      <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2014/10/tags-plugins-showcase/</guid>
-      <description>&lt;p&gt;This post is used to show how tag plugins are displayed. See &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md#tags&#34;&gt;docs&lt;/a&gt; for more info.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Hidden social section showcase</title>
-      <link>https://jialongzuo.github.io/2014/08/hidden-social-section-showcase/</link>
-      <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2014/08/hidden-social-section-showcase/</guid>
-      <description>&lt;p&gt;This post is used to show how a site looks if the social section is hidden.
 &lt;/p&gt;</description>
     </item>
     
@@ -81,16 +122,6 @@
     </item>
     
     <item>
-      <title>Hidden pagination showcase</title>
-      <link>https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/</link>
-      <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2014/08/hidden-pagination-showcase/</guid>
-      <description>&lt;p&gt;This post is used to show how a site looks if the pagination is hidden.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Video integrations showcase</title>
       <link>https://jialongzuo.github.io/2014/08/video-integrations-showcase/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
@@ -101,32 +132,12 @@
     </item>
     
     <item>
-      <title>中文測試</title>
-      <link>https://jialongzuo.github.io/2013/10/chinese-test/</link>
-      <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2013/10/chinese-test/</guid>
-      <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Image gallery showcase</title>
       <link>https://jialongzuo.github.io/2013/02/image-gallery-showcase/</link>
       <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
       
       <guid>https://jialongzuo.github.io/2013/02/image-gallery-showcase/</guid>
       <description>&lt;p&gt;And here is the image gallery!
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>日本語テスト</title>
-      <link>https://jialongzuo.github.io/2013/01/japanese-test/</link>
-      <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://jialongzuo.github.io/2013/01/japanese-test/</guid>
-      <description>&lt;p&gt;This is a Japanese test post to show you how japanese is displayed.
 &lt;/p&gt;</description>
     </item>
     
